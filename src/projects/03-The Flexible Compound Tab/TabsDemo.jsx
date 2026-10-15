@@ -1,30 +1,30 @@
 
 // context to hold state
 
-import {  createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const TabsContext = createContext(null);
 
-export function Tabs({children, defaultTab}) {
+export function Tabs({ children, defaultTab }) {
 
   const [activeTab, setActiveTab] = useState(defaultTab);
 
-  return <TabsContext.Provider value={{activeTab, setActiveTab}}>
+  return <TabsContext.Provider value={{ activeTab, setActiveTab }}>
     <div>
-    {children}
-  </div>
+      {children}
+    </div>
   </TabsContext.Provider>
 }
 
-Tabs.List = function TabList({children}){
+Tabs.List = function TabList({ children }) {
   return <div style={{ display: 'flex', gap: '8px', borderBottom: '2px solid #eee' }}>{children}</div>;
 }
 
-Tabs.Tab = function Tab({id,children}) {
+Tabs.Tab = function Tab({ id, children }) {
 
-console.log(id)
+  console.log(id)
   const {
-    activeTab, 
+    activeTab,
     setActiveTab
   } = useContext(TabsContext);
 
@@ -35,22 +35,22 @@ console.log(id)
   return <button
     onClick={() => setActiveTab(id)}
     style={{
-      background:"#fff",
-      border:"1px solid #ddd",
-      cursor:"pointer",
-      padding:"8px 20px",
-      marginBottom:"5px",
-      ...(isActiveTab ? {color:"#636fa3"} : {color:"#302c2c"})
+      background: "#fff",
+      border: "1px solid #ddd",
+      cursor: "pointer",
+      padding: "8px 20px",
+      marginBottom: "5px",
+      ...(isActiveTab ? { color: "#636fa3" } : { color: "#302c2c" })
     }}
   >
     {children}
   </button>
 }
 
-Tabs.Panel = function TabPanel({id,children}) {
+Tabs.Panel = function TabPanel({ id, children }) {
 
-  const { activeTab} = useContext(TabsContext);
-  
+  const { activeTab } = useContext(TabsContext);
+
   return activeTab === id ? children : null;
 
 }
@@ -61,7 +61,7 @@ export function TabsDemo() {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Compound Components Pattern (Tabs)</h2>
-      
+
       <Tabs defaultTab="account">
         <Tabs.List>
           <Tabs.Tab id="account">Account Settings</Tabs.Tab>
