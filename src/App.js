@@ -1,8 +1,10 @@
 import './App.css';
 // import { BrokenModalApp } from './projects/01-The Laggy Modal/BrokenModalApp';
-// import { BrokenModalAppFix } from './projects/01-The Laggy Modal/BrokenModalAppFix';
+import { BrokenModalAppFix } from './projects/01-The Laggy Modal/BrokenModalAppFix';
 import { BrokenForm } from './projects/02-Keystroke Freeze/BrokenForm';
 import { TabsDemo } from './projects/03-The Flexible Compound Tab/TabsDemo';
+import { HeavyStatusRenderer } from './projects/04- Heavy Sync';
+import { BrokenOrderBook } from './projects/05-Crypto';
 
 function App() {
   return (
@@ -10,11 +12,12 @@ function App() {
       {/* project 1 */}
       {/* <BrokenModalApp /> */}
       {/* <BrokenModalAppFix /> */}
-
+      {/* <HeavyStatusRenderer /> */}
+      <BrokenOrderBook />
 
       {/* project 2 */}
       {/* <BrokenForm /> */}
-      <TabsDemo />
+      {/* <TabsDemo /> */}
     </div>
   );
 }

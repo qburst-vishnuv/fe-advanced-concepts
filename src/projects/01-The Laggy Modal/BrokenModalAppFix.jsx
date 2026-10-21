@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { processMassiveArray } from '../../yieldWithChannel';
 
 // Heavy component simulating expensive DOM rendering
 function HeavyGrid() {
@@ -17,6 +18,7 @@ function HeavyGrid() {
 
 function Modal({children}) {
   const [isOpen, setIsOpen] = useState(false);
+  processMassiveArray([1,2,3,4])
    
   return (
     <>
