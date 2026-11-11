@@ -4,7 +4,7 @@ import { heavyHandler } from '../../hooks/useHeavyHandler';
 
 // Generates 50,000 raw financial order objects
 function generateRawOrders() {
-  return Array.from({ length: 50_000 }, (_, i) => ({
+  return Array.from({ length: 50_00 }, (_, i) => ({
     id: `order-${i}`,
     symbol: i % 2 === 0 ? 'BTC-USD' : 'ETH-USD',
     price: (Math.random() * 50000).toFixed(2),
@@ -30,19 +30,19 @@ export function BrokenOrderBook() {
     );
 
     // 2. Set up listener ONCE before posting messages
-    workerRef.current.onmessage = function (e) {
+    workerRef.current.onmessage = async function (e) {
       const { type, data } = e.data;
 
       if (type === WorkerControls.INIT_COMPLETE) {
         console.log("Worker initialized dataset:", data.length, "items");
-        heavyHandler?.();
+        await heavyHandler?.();
         
         // Non-blocking UI update via startTransition
         startTransition(() => {
           setOrders(data);
         });
       } else if (type === WorkerControls.FILTER_COMPLETE) {
-        heavyHandler?.();
+        await heavyHandler?.();
         
         // Non-blocking UI update via startTransition
         startTransition(() => {
